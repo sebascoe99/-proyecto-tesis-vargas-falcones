@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+.recent--patientslf {
+    margin-bottom: 20px;
+    padding: 0;
+}
+
+.recent--patientscf {
+    margin-bottom: 20px;
+    padding: 0;
+}
+.tableslf {
+    height: 200px;
+    overflow-y: scroll;
+    height: 50vh;
+    box-shadow: 5px 10px 18px #888888;
+}
+
+table {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+}
+
+.adds {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    outline: none;
+    border: none;
+    background-color: #5073fb;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.adds:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.adds i {
+    margin-right: 10px;
+    padding: 5px;
+    background-color: #fff;
+    border-radius: 50%;
+    color: #000;
+}
+
+.containerscf {
+    max-width: 700px;
+    width: 100%;
+    background: #fff;
+    margin-top: 40px;
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 5px 10px 18px #888888;
+}
+
+.containerscf .titles { 
+    font-size: 27px;
+    font-weight: 600;
+    position: relative;
+}
+
+.containerscf .titles::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 35px;
+    background-color: #4070f4;
+    border-radius: 25px;
+}
+
+.containerscf form .user-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; 
+    margin: 20px 0 12px 0;
+}
+
+form .user-details .input-fields {
+    position: relative;
+    margin-bottom: 15px;
+    width: 100%;
+    /*width: calc(100% / 2 - 20px);*/
+}
+
+.user-details .input-fields input {
+    height: 45px;
+    width: 100%;
+    padding: 0 35px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    border-bottom: 2px solid #ccc;
+    border-top: 2px solid transparent; 
+    transition: all 0.2s ease;
+}
+
+.user-details .input-fields input:is(:focus, :valid){
+    border-bottom-color: #4070f4;
+}
+
+form .button {
+    height:45px;
+    margin: 30px 0;
+}
+
+form .button input {
+    height:100%;
+    width:100%;
+    outline: none;
+
+    border: none;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    border-radius: 6px;
+    background-color: #4070f4;
+    cursor: pointer;
+    transition: all 0.3s ease
+}
+
+.button input:hover{
+    background-color: #265df2;
+}
+
+
+.input-fields i {
+    position: absolute;
+    transform: translateY(-150%);
+    margin-left: 5px;
+    font-size: 23px;
+}
+
+.input-fields input:is(:focus, :valid) ~ i{
+    color: #4070f4;
+}
+
+
+
+
+
+
+
+/* responsive starts here */
+
+@media screen and (max-width:1350px) {
+    .cards,
+    .doctors--cards {
+        overflow-x: scroll;
+    }
+}
+
+@media screen and (max-width:1024px) {
+    table {
+        min-width: 600px;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .logo {
+        padding-left: 30px;
+        width: fit-content;
+    }
+    .search--notification--profile {
+        padding: 0 20px;
+        margin-left: auto;
+    }
+
+}
+
+@media screen and (max-width:590px) {
+    .search,
+    .lock,
+    .chat {
+        display: none;
+    }
+    .notification--profile {
+        margin-left: auto;
+    }
+    .search--notification--profile {
+        width: fit-content;
+    }
+
+}
+/*
+@media (max-width: 550px) {
+    .containerscf {
+        max-width:100%;
+    }
+
+    form .user-details .input-box {
+        margin-bottom: 15px;
+        width: 100%
+    }
+
+    .containerscf form .user-details {
+        max-height: 300px;
+        overflow-y: scroll;
+        width: 0;
+    }
+
+    .user-details::-webkit-scrollbar {
+        width: 0;
+    }
+
+    .input-box i {
+        position: absolute;
+        transform: translateY(15%);
+        margin-left: -415px;
+        font-size: 23px;
+    }
+}
+*/
+
+
+@media screen and (max-width:480px) {
+    .doctor--filter {
+        display: none;
+    }
+
+    .logo {
+        padding-left: 10px;
+    }
+    .search--notification--profile {
+        padding: 0 10px;
+    }
+
+    .containerscf form .user-details {
+        max-height: 200px;
+        overflow-y: scroll;
+        width: 0;
+    }
+
+    table {
+        overflow: scroll;
+    }
+
+    table::-webkit-scrollbar {
+        width: 10px;
+    }
+
+}

@@ -1,0 +1,9 @@
+body{
+    background-image: url("../theme/dist/img/ug.jpeg");
+    background-size: cover;
+}
+.title a{
+    font-weight: 300;
+    color: #46A2FD;
+    background: rgba(0, 0, 0, 0.4)
+}
