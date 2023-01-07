@@ -27,6 +27,13 @@
         </tr>
       </thead>
       <tbody>
+
+      {{ $courses = new stdClass(); }}
+      {{$courses->name_faculty = "Nick";}}
+      {{$courses->name_career = "Doe";}}
+      {{$courses->name_course = "joe";}}
+      {{$courses->semester = "maly";}}
+
         @foreach ($courses as $course)  
         <tr>
           <td data-label="Facultad">{{ $course->name_faculty }}</td>

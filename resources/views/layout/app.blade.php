@@ -62,7 +62,7 @@
                         <li class="nav-list-item">
                             <i class="fa-solid fa-building-columns"></i>
                             <span>
-                                <a href="">Asignaturas</a>
+                                <a href="/lista_asignaturas">Asignaturas</a>
                             </span>
                         </li>
                         <li class="nav-list-item">                            

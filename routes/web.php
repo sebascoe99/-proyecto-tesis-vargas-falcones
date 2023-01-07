@@ -43,5 +43,9 @@ Route::get('/home-perfil', function () {
     return view('perfil.ver_perfil');
 });
 
+Route::get('/lista_asignaturas', function () {
+    return view('asignaturas.asignaturas_lista');
+});
+
 
 Route::get('/lista-usuarios-tutoria/{id}', [TutoriaAccionesController::class, 'listaEstudiantes']);
