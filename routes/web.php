@@ -52,6 +52,10 @@ Route::get('/asignaturas_crear', function () {
     return view('asignaturas.asignaturas_crear');
 });
 
+Route::get('/crear_usuarios', function () {
+    return view('usuarios.crear_usuarios');
+});
+
 Route::get('/asignacion', [AdminController::class, 'index']);
 Route::get('/search-careers/{id}', [AdminController::class, 'getCareersByFaculty']);
 Route::get('/docentes', [AdminController::class, 'getTutors']);

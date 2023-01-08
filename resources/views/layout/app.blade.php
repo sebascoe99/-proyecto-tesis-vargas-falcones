@@ -76,7 +76,7 @@
                             <span>                                
                                 <a href="#" role="button" class="dropdown-toggle" data-bs-toggle="dropdown">Usuarios</a>
                                 <ul class="dropdown-menu dropdown-menu-dark">
-                                    <li><a class="dropdown-item" href="">Crear Usuario</a></li>                            
+                                    <li><a class="dropdown-item" href="/crear_usuarios">Crear Usuario</a></li>                            
                                     <li><a class="dropdown-item" href="">Lista de Usuarios</a></li>
                                 </ul>
                             </span>
