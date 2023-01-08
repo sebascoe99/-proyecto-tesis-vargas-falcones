@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Tutor\TutoriaAccionesController;
 use App\Http\Controllers\Tutor\TutoriaController;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', function () {    
+Route::get('/', function () {
     return view('login.login');
 });
 
@@ -47,5 +48,8 @@ Route::get('/lista_asignaturas', function () {
     return view('asignaturas.asignaturas_lista');
 });
 
+Route::get('/asignacion', [AdminController::class, 'index']);
+Route::get('/search-careers/{id}', [AdminController::class, 'getCareersByFaculty']);
+Route::get('/docentes', [AdminController::class, 'getTutors']);
 
 Route::get('/lista-usuarios-tutoria/{id}', [TutoriaAccionesController::class, 'listaEstudiantes']);
