@@ -56,4 +56,6 @@ Route::get('/asignacion', [AdminController::class, 'index']);
 Route::get('/search-careers/{id}', [AdminController::class, 'getCareersByFaculty']);
 Route::get('/docentes', [AdminController::class, 'getTutors']);
 
+//Se agrega un comentario cualquiera xd
+
 Route::get('/lista-usuarios-tutoria/{id}', [TutoriaAccionesController::class, 'listaEstudiantes']);
