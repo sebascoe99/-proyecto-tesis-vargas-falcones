@@ -47,5 +47,9 @@ Route::get('/lista_asignaturas', function () {
     return view('asignaturas.asignaturas_lista');
 });
 
+Route::get('/asignaturas_crear', function () {
+    return view('asignaturas.asignaturas_crear');
+});
+
 
 Route::get('/lista-usuarios-tutoria/{id}', [TutoriaAccionesController::class, 'listaEstudiantes']);

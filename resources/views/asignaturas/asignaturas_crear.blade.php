@@ -12,7 +12,7 @@
             <div class="mb-2">
                 <form action="{{ route('create_course') }}" method="POST" class="row g-3">
                 @csrf
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label class="form-label" for="perfil">Facultad</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fa-solid fa-building-columns"></i></span>
@@ -24,7 +24,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-lg-12">
+                    <div class="col-lg-6">
                         <label class="form-label" for="carrera">Carrera</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fa-solid fa-book-open-reader"></i> </span>
@@ -36,11 +36,11 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-lg-12">
+                    <div class="col-lg-6">
                         <label class="form-label" for="asignatura">Asignatura</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fa-solid fa-book"></i> </span>
-                            <select class="form-select perfil-select" name="name_course" value="{{ old('name_course') }}" required>
+                            <select class="form-select perfil-select" name="name_course[]" multiple="" value="{{ old('name_course') }}" required>
                                 <option selected>Selecciona facultad</option>
                                 @foreach ($courses as $course)
                                     <option value="{{ $course->name }}">{{ $course->name }}</option>
@@ -48,7 +48,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-lg-12">
+                    <div class="col-lg-6">
                         <label class="form-label" for="asignatura">Semestre</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fa-solid fa-book"></i> </span>
@@ -64,6 +64,31 @@
                                 <option value="Octavo">8</option>
                                 <option value="Noveno">9</option>
                                 <option value="Decimo">10</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <label class="form-label" for="dosente">Dosente a asignar</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa-solid fa-book"></i> </span>
+                            <select class="form-select perfil-select" name="tutor" value="{{ old('tutor') }}" required>
+                                <option selected>Selecciona Dosente</option>
+                                @foreach ($Tutors as $tutor)
+                                    <option value="{{ $tutor->id }}">{{ $tutor->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <label class="form-label" for="period">Periodo</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa-solid fa-book"></i> </span>
+                            <select class="form-select perfil-select" name="period" value="{{ old('period') }}" required>
+                                <option selected>Selecciona semestre</option>
+                                <option value="Primero">1</option>
+                                <option value="Segundo">2</option>
                             </select>
                         </div>
                     </div>

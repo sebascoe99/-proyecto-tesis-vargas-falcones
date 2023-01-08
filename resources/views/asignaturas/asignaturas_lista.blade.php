@@ -11,7 +11,7 @@
      </div>
   </div>
   <div class="card-table col-sm-0.5 p-1">
-    <a class="btn btn-primary" type="button" href="/crear-asignaturas"><span><i class="fa-solid fa-plus"></i></span></a>
+    <a class="btn btn-primary" type="button" href="/asignaturas_crear"><span><i class="fa-solid fa-plus"></i></span></a>
   </div>
 </div>
 
@@ -27,30 +27,27 @@
         </tr>
       </thead>
       <tbody>
-
-      {{ $courses = new stdClass(); }}
-      {{$courses->name_faculty = "Nick";}}
-      {{$courses->name_career = "Doe";}}
-      {{$courses->name_course = "joe";}}
-      {{$courses->semester = "maly";}}
-
-        @foreach ($courses as $course)  
-        <tr>
-          <td data-label="Facultad">{{ $course->name_faculty }}</td>
-          <td data-label="Carrera">{{ $course->name_career }}</td>
-          <td data-label="Asignatura">{{ $course->name_course }}</td>
-          <td data-label="Semestre">{{ $course->semester }}</td>
-
-          <td class="acciones">
-            <span>
-              <i class="fa-solid fa-pen-to-square edit"></i>
-            </span>
-            <span class="borrar">
-              <i class="fa-solid fa-trash-can delete"></i>
-            </span>
-          </td>
-        </tr>
-        @endforeach
+      <tr>
+        <td>Facultad 1</td>
+        <td>Carrera 1</td>
+        <td>Asignatura 1</td>
+        <td>Semestre 1</td>
+        <td>Acciones 1</td>
+      </tr>
+      <tr>
+        <td>Facultad 2</td>
+        <td>Carrera 2</td>
+        <td>Asignatura 2</td>
+        <td>Semestre 2</td>
+        <td>Acciones 2</td>
+      </tr>
+      <tr>
+        <td>Facultad 3</td>
+        <td>Carrera 3</td>
+        <td>Asignatura 3</td>
+        <td>Semestre 3</td>
+        <td>Acciones 3</td>
+      </tr>
       </tbody>
     </table>
   </div>
