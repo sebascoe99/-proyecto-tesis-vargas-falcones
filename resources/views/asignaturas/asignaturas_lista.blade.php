@@ -27,27 +27,24 @@
         </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>Facultad 1</td>
-        <td>Carrera 1</td>
-        <td>Asignatura 1</td>
-        <td>Semestre 1</td>
-        <td>Acciones 1</td>
-      </tr>
-      <tr>
-        <td>Facultad 2</td>
-        <td>Carrera 2</td>
-        <td>Asignatura 2</td>
-        <td>Semestre 2</td>
-        <td>Acciones 2</td>
-      </tr>
-      <tr>
-        <td>Facultad 3</td>
-        <td>Carrera 3</td>
-        <td>Asignatura 3</td>
-        <td>Semestre 3</td>
-        <td>Acciones 3</td>
-      </tr>
+
+        @foreach ($courses as $course)  
+        <tr>
+          <td data-label="Facultad">{{ $course->name_faculty }}</td>
+          <td data-label="Carrera">{{ $course->name_career }}</td>
+          <td data-label="Asignatura">{{ $course->name_course }}</td>
+          <td data-label="Semestre">{{ $course->semester }}</td>
+
+          <td class="acciones">
+            <span>
+              <i class="fa-solid fa-pen-to-square edit"></i>
+            </span>
+            <span class="borrar">
+              <i class="fa-solid fa-trash-can delete"></i>
+            </span>
+          </td>
+        </tr>
+        @endforeach
       </tbody>
     </table>
   </div>
