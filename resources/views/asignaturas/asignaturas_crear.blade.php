@@ -10,16 +10,17 @@
                 <a href="/listar-asignaturas" style="font-size:30px; width:50px; color:#000"><i class="fa-solid fa-arrow-left"></i></a>
             </div>
             <div class="mb-2">
-                <form action="{{ route('create_course') }}" method="POST" class="row g-3">
+                {{-- <form action="{{ route('create_course') }}" method="POST" class="row g-3"> --}}
+                <form action="" method="POST" class="row g-3">
                 @csrf
                     <div class="col-md-6">
                         <label class="form-label" for="perfil">Facultad</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fa-solid fa-building-columns"></i></span>
-                            <select class="form-select perfil-select" name="name_faculty" value="{{ old('name_faculty') }}" required>
-                                <option selected>Selecciona facultad</option>
+                            <select class="form-select perfil-select" id="name_faculty" name="name_faculty" value="{{ old('name_faculty') }}" required>
+                                <option value="0" selected>Selecciona facultad</option>
                                 @foreach ($faculties as $faculty)
-                                    <option value="{{ $faculty->name }}">{{ $faculty->name }}</option>
+                                    <option value="{{ $faculty->id }}">{{ $faculty->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -28,11 +29,11 @@
                         <label class="form-label" for="carrera">Carrera</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fa-solid fa-book-open-reader"></i> </span>
-                            <select class="form-select perfil-select" name="name_career" value="{{ old('name_race') }}" required>
-                                <option selected>Selecciona carrera</option>
-                                @foreach ($careers as $career)
+                            <select class="form-select perfil-select" id='name_career' name="name_career" value="{{ old('name_race') }}" required>
+                                <option value='0' selected>Selecciona carrera</option>
+                                {{-- @foreach ($careers as $career)
                                     <option value="{{ $career->name }}">{{ $career->name }}</option>
-                                @endforeach
+                                @endforeach --}}
                             </select>
                         </div>
                     </div>
@@ -42,9 +43,9 @@
                             <span class="input-group-text"><i class="fa-solid fa-book"></i> </span>
                             <select class="form-select perfil-select" name="name_course[]" multiple="" value="{{ old('name_course') }}" required>
                                 <option selected>Selecciona facultad</option>
-                                @foreach ($courses as $course)
+                                {{-- @foreach ($courses as $course)
                                     <option value="{{ $course->name }}">{{ $course->name }}</option>
-                                @endforeach
+                                @endforeach --}}
                             </select>
                         </div>
                     </div>
@@ -92,7 +93,7 @@
                             </select>
                         </div>
                     </div>
-                    
+
                     <button type="button" class="btn btn-primary btn-lg">GUARDAR</button>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -102,4 +103,32 @@
         </div>
     </div>
 </section>
+
+<script>
+    $("#name_faculty").change(function() {
+
+        var idFacultad = $("#name_faculty option:selected").val();
+
+        $.ajax({
+            url: 'search-careers',
+            type: 'POST',
+            dataType: 'json',
+            data: { id: idFacultad, "_token": "{{ csrf_token() }}"},
+            success: function(data) {
+
+                if(!$.trim(data)){
+                    $('#name_career').empty()
+                    $('#name_career').prepend("<option value='0' selected>Selecciona carrera</option>");
+                }else{
+
+                    data.forEach(function(carrera, index) {
+                        $('#name_career').prepend("<option value='"+carrera['id']+"' >"+carrera['name']+"</option>");
+                    });
+                }
+            }
+        });
+    });
+
+</script>
+
 @endsection

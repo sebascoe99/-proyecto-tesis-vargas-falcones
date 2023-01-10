@@ -18,39 +18,24 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $facultades = Facultad::all('id', 'name');
+        $faculties = Facultad::all('id', 'name');
+        //$careers = Carrera::all('id', 'faculty_id', 'name');//->where('faculty_id', $id);
 
-        $data = array(
-            'message' => 'success',
-            'status' => '200',
-            'data' => $facultades
-        );
-
-        return $data;
+        return view('asignaturas.asignaturas_crear', compact('faculties'/*, 'careers'*/));
     }
 
     /**
      * Obtiene todas las carreras relacionadas a la facultad
      */
-    public function getCareersByFaculty($id)
+    public function getCareersByFaculty(Request $request)
     {
-        if(!isset($id) || !is_numeric($id)){
-            $data = array(
-                'message' => 'error',
-                'status' => '500',
-                'data' => []
-            );
-            return $data;
-        }
+        //$carreras = Carrera::all('id', 'faculty_id', 'name')->where('faculty_id', $request->id);
 
-        $carreras = Carrera::all('id', 'faculty_id', 'name')->where('faculty_id', $id);
+        $carreras = DB::select("SELECT c.id, c.faculty_id, c.name
+                        FROM `careers` c
+                        WHERE c.faculty_id = '$request->id' ");
 
-        $data = array(
-            'message' => 'success',
-            'status' => '200',
-            'data' => $carreras
-        );
-        return $data;
+        return $carreras;
     }
 
     /**

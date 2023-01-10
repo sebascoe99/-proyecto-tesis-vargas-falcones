@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    
+
     <!--GOOGLE FONTS-->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!--FONTAWESONE-->
     <link rel="stylesheet" href="{{ asset('css/styleB.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
     <title>@yield('title')</title>
 </head>
@@ -65,7 +65,7 @@
                                 <a href="/lista_asignaturas">Asignaturas</a>
                             </span>
                         </li>
-                        <li class="nav-list-item">                            
+                        <li class="nav-list-item">
                             <i class="fa-solid fa-envelope"></i>
                             <span>
                                 <a href="">Mensajeria</a>
@@ -73,10 +73,10 @@
                         </li>
                         <li class="nav-list-item">
                             <i class="fa-solid fa-users"></i>
-                            <span>                                
+                            <span>
                                 <a href="#" role="button" class="dropdown-toggle" data-bs-toggle="dropdown">Usuarios</a>
                                 <ul class="dropdown-menu dropdown-menu-dark">
-                                    <li><a class="dropdown-item" href="/crear_usuarios">Crear Usuario</a></li>                            
+                                    <li><a class="dropdown-item" href="/crear_usuarios">Crear Usuario</a></li>
                                     <li><a class="dropdown-item" href="">Lista de Usuarios</a></li>
                                 </ul>
                             </span>

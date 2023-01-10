@@ -48,9 +48,12 @@ Route::get('/lista_asignaturas', function () {
     return view('asignaturas.asignaturas_lista');
 });
 
-Route::get('/asignaturas_crear', function () {
-    return view('asignaturas.asignaturas_crear');
-});
+// Route::get('/asignaturas_crear', function () {
+//     return view('asignaturas.asignaturas_crear');
+// });
+
+
+Route::get('/asignaturas_crear', [AdminController::class, 'index']);
 
 Route::get('/crear_usuarios', function () {
     return view('usuarios.crear_usuarios');
@@ -60,8 +63,8 @@ Route::get('/crear-tutorias', function () {
     return view('usuarios.tutorias_crear');
 });
 
-Route::get('/asignacion', [AdminController::class, 'index']);
-Route::get('/search-careers/{id}', [AdminController::class, 'getCareersByFaculty']);
+//Route::get('/asignacion', [AdminController::class, 'index']);
+Route::post('/search-careers', [AdminController::class, 'getCareersByFaculty']);
 Route::get('/docentes', [AdminController::class, 'getTutors']);
 
 //Se agrega un comentario cualquiera xd
