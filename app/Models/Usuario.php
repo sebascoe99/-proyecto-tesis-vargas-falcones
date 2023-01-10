@@ -10,7 +10,7 @@ class Usuario extends Model
     use HasFactory;
     protected $guarded = [];
     protected $table = 'usuario';
-    
+
     public function persona(){
         return $this->belongsTo(Persona::class);
     }
@@ -19,8 +19,8 @@ class Usuario extends Model
         return $this->hasMany(EstadoUsuario::class);
     }
 
-    public function rol(){
-        return $this->hasMany(Rol::class);
+    public function role(){
+        return $this->hasOne(Rol::class);
     }
 
 }

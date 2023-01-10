@@ -7,7 +7,7 @@
         <div class="card col-sm-10 p-3">
             <div class="mb-3 d-flex justify-content-between">
                 <h4 class="titulo">CREAR TUTORIAS</h4>
-                <a href="/listar-tutorias" style="font-size:30px; width:50px; color:#000"><i class="fa-solid fa-arrow-left"></i></a>
+                <a href="{{ route('tutorias.index') }}" style="font-size:30px; width:50px; color:#000"><i class="fa-solid fa-arrow-left"></i></a>
             </div>
             <div class="mb-2">
                 <form action="{{ route('create_tutorship') }}" method="POST" class="row g-3">
@@ -87,7 +87,7 @@
                             <span class="input-group-text"><i class="fa-solid fa-users"></i></span>
                             <input type="text" class="form-control" placeholder="Tema" name="theme" required>
                         </div>
-                        
+
                     </div>
                     <div class="col-lg-12">
                         <label class="form-label" for="place">Lugar</label>
@@ -123,7 +123,7 @@
                             <span class="input-group-text"><i class="fa-solid fa-users"></i></span>
                             <input type="number" class="form-control" placeholder="Maximo de estudiantes" name="max_students" value="{{ old('numberStudent') }}" required>
                         </div>
-                        
+
                     </div>
                     <div class="col-lg-6">
                         <label class="form-label" for="reason">Motivo</label>
@@ -145,7 +145,7 @@
                             <input type="text" class="form-control" placeholder="Especifique motivo" name="other" required>
                         </div>
                     </div>
-                    
+
                     <button type="button" class="btn btn-primary btn-lg">GUARDAR</button>
                 </form>
             </div>

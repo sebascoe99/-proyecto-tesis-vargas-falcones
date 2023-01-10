@@ -7,19 +7,19 @@
         <div class="card col-sm-12 p-3">
             <div class="mb-3 d-flex justify-content-between">
                 <h4 class="titulo">DATOS DE LA TUTORIA</h4>
-                <a href="/listar-tutorias" style="font-size:30px; width:50px; color:#000">
+                <a href="{{ route('tutorias.index') }}" style="font-size:30px; width:50px; color:#000">
                     <i class="fa-solid fa-arrow-left"></i>
                 </a>
             </div>
             @foreach ($data as $tutoria)
-            
+
             <div class="row justify-content-md-center" style="text-align: center">
                 <div class="col">
                     <h2>Tema: {{ $tutoria->tema }}</h2>
                     <h5><b>Facultad:</b> {{ $tutoria->facultad }}</h5>
-                </div>               
-            </div>                
-            
+                </div>
+            </div>
+
             <div class="row mt-4 justify-content-center">
                 <div class="col-md-4">
                     <label><b>Carrera:</b> {{ $tutoria->carrera }}</label>
@@ -28,7 +28,7 @@
                     <label><b>Semestre:</b> {{ $tutoria->semestre }}</label>
                 </div>
             </div>
-            
+
             <div class="row mt-2 justify-content-center">
                 <div class="col-md-4">
                     <label><b>Asignatura:</b> {{ $tutoria->asignatura }}</label>
@@ -36,8 +36,8 @@
                 <div class="col-md-4">
                     <label><b>Cantidad de estudiantes:</b> {{ $tutoria->cantidad_estudiantes }}</label>
                 </div>
-            </div>     
-            
+            </div>
+
             <div class="row mt-2 justify-content-center">
                 <div class="col-md-4">
                     <label><b>Limite de estudiantes:</b> {{ $tutoria->limite_estudiantes }}</label>
@@ -61,13 +61,13 @@
                     <label><b>Hora de cierre:</b> {{ $tutoria->hora_cierre }}</label>
                 </div>
             </div>
-            
-            
-            
-            
-        </div>        
+
+
+
+
+        </div>
     </div>
-    
+
     <div class="card col-sm-12 p-2" id="acciones_tutor">
         <div class="row" >
             <div>
@@ -86,7 +86,7 @@
                 <a href="" type="button" class="justify-content-center">Informe Final</a>
             </div>
         </div>
-        
+
         {{-- <form action="">
             <table class="table table-bordered border-primary">
                 <thead>
@@ -102,20 +102,20 @@
                         <th>{{$estudiante->name}} {{$estudiante->last_name}} {{$estudiante->second_last_name}}</th>
                         <th style="text-align: center"><input type="checkbox"></th>
                         <th><input type="text" name="" id=""></th>
-                    </tr>                        
+                    </tr>
                     @endforeach
-                    
+
                 </tbody>
-            </table> 
-            <div style="display:flex; justify-content:flex-end; width:100%; padding:0;"> 
+            </table>
+            <div style="display:flex; justify-content:flex-end; width:100%; padding:0;">
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </div>
-            
-            
+
+
         </form> --}}
     </div>
     @endforeach
-    
+
     <h3 class="mt-4" style="text-align: center"><b>Publicaciones</b></h3>
     {{-- aqui un foreach de publicaciones --}}
     <div class="card col-sm-12 p-2" id="publicaciones">

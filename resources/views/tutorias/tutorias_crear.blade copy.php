@@ -6,7 +6,7 @@
     <div class="recent--patientscu">
         <div class="title">
             <!-- <h2 class="section--title">CREAR USUARIOS</h2> -->
-            <a href="/listar-tutorias" class="adds"><i class="ri-arrow-left-fill"></i>Volver</a>
+            <a href="{{ route('tutorias.index') }}" class="adds"><i class="ri-arrow-left-fill"></i>Volver</a>
             <!-- <button class="add"><i class="ri-add-line"></i>Volver</button> -->
         </div>
         <div class="tablescu">
@@ -17,8 +17,8 @@
                 @csrf
                 <div class="user-details">
                     <div class="input-fields">
-                        <select class="select-css" id="facultad" name="faculty_id" value="{{ old('faculty_id') }}" required>   
-                            <option>Seleccione la facultad...</option>                        
+                        <select class="select-css" id="facultad" name="faculty_id" value="{{ old('faculty_id') }}" required>
+                            <option>Seleccione la facultad...</option>
                             @foreach ($faculties as $faculty)
                                 <option value="{{ $faculty->id }}">{{ $faculty->name }}</option>
                             @endforeach
@@ -29,7 +29,7 @@
                     </div>
                     <div class="input-box">
                         <select class="select-css" id="carrera" name="career_id" value="{{ old('career_id') }}" required>
-                            <option>Seleccione la carrera...</option>  
+                            <option>Seleccione la carrera...</option>
                             {{-- <option value="value1">Ingenieria civil</option>
                             <option value="value2">Ingenieria en sistemas computacionales</option>
                             <option value="value3">Odontologia</option> --}}
@@ -37,7 +37,7 @@
                     </div>
                     <div class="input-box">
                         <select class="select-css" id="curso" name="course_id" value="{{ old('course_id') }}" required>
-                            <option>Seleccione la asignatura...</option>  
+                            <option>Seleccione la asignatura...</option>
                             {{-- <option value="value1">Matematica</option>
                             <option value="value2">Fisica</option>
                             <option value="value3">Programacion orientada a objeto</option> --}}
@@ -45,7 +45,7 @@
                     </div>
                     <div class="input-box">
                         <select class="select-css" name="teacher_id" value="{{ old('teacher') }}" required>
-                            <option>Seleccione el tutor...</option>  
+                            <option>Seleccione el tutor...</option>
                             @foreach ($tutors as $tutor)
                                 <option value="{{ $tutor->id }}">{{ $tutor->name }} {{ $tutor->last_name }} {{ $tutor->second_last_name }}</option>
                             @endforeach
@@ -84,7 +84,7 @@
                 </div>
             </form>
             </div>
-            
+
             <!-- <div class="login-signup">
                 <span class="text">¿Ya tienes una cuenta?</span>
                 <a href="/login" class="text signup-link">Inicia sesión</a>

@@ -9,9 +9,13 @@ class Rol extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $table = 'rol';
+    protected $table = 'rols';
 
     public function usuario(){
         return $this->belongsTo(Usuario::class);
+    }
+
+    public function user(){
+        return $this->hasOne(User::class, 'id');
     }
 }

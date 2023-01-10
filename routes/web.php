@@ -1,10 +1,13 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AsignaturaController;
 use App\Http\Controllers\Tutor\TutoriaAccionesController;
 use App\Http\Controllers\Tutor\TutoriaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
+require __DIR__.'/auth.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -25,48 +28,49 @@ Route::get('/', function () {
     return view('login.login');
 });
 
-Route::get('/dashboard', function(){
-    $auth = Auth::user();
-    return view('dashboard.dashboard', compact('auth'));
-})->middleware(['auth'])->name('dashboard');
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/dashboard', function(){
+        $auth = Auth::user();
+        return view('dashboard.dashboard', compact('auth'));
+    })->middleware(['auth'])->name('dashboard');
+
+    Route::get('/tutorias', [TutoriaController::class, 'index'])->name('tutorias.index');
+    Route::get('/tutoria-tutor/{id}', [TutoriaController::class, 'show']);
+    // Route::get('/tutoria-editar', [TutoriaController::class, 'index']);
+    // Route::get('/tutoria-eliminar', [TutoriaController::class, 'index']);
 
 
-require __DIR__.'/auth.php';
+    Route::get('/perfil', function () {
+        return view('perfil.index');
+    })->name('perfil.index');
+
+    Route::get('/asignaturas', [AsignaturaController::class, 'index'])->name('asignaturas.index');
+
+    Route::get('/asignaturas/crear', [AsignaturaController::class, 'create'])->name('asignaturas.create');
+
+    Route::post('/asignaturas/search-careers', [AsignaturaController::class, 'getCareersByFaculty'])->name('asignaturas.search');
+
+    // Route::get('/asignaturas/crear', function () {
+    //     return view('asignaturas.create');
+    // });
 
 
-Route::get('/listar-tutorias', [TutoriaController::class, 'index']);
-Route::get('/tutoria-tutor/{id}', [TutoriaController::class, 'show']);
-// Route::get('/tutoria-editar', [TutoriaController::class, 'index']);
-// Route::get('/tutoria-eliminar', [TutoriaController::class, 'index']);
 
 
-Route::get('/home-perfil', function () {
-    return view('perfil.ver_perfil');
+    Route::get('/crear_usuarios', function () {
+        return view('usuarios.crear_usuarios');
+    });
+
+    Route::get('/crear-tutorias', function () {
+        return view('usuarios.tutorias_crear');
+    });
+
+    //Route::get('/asignacion', [AdminController::class, 'index']);
+    Route::get('/docentes', [AdminController::class, 'getTutors']);
+
+    //Se agrega un comentario cualquiera xd
+
+    Route::get('/lista-usuarios-tutoria/{id}', [TutoriaAccionesController::class, 'listaEstudiantes']);
+
 });
 
-Route::get('/lista_asignaturas', function () {
-    return view('asignaturas.asignaturas_lista');
-});
-
-// Route::get('/asignaturas_crear', function () {
-//     return view('asignaturas.asignaturas_crear');
-// });
-
-
-Route::get('/asignaturas_crear', [AdminController::class, 'index']);
-
-Route::get('/crear_usuarios', function () {
-    return view('usuarios.crear_usuarios');
-});
-
-Route::get('/crear-tutorias', function () {
-    return view('usuarios.tutorias_crear');
-});
-
-//Route::get('/asignacion', [AdminController::class, 'index']);
-Route::post('/search-careers', [AdminController::class, 'getCareersByFaculty']);
-Route::get('/docentes', [AdminController::class, 'getTutors']);
-
-//Se agrega un comentario cualquiera xd
-
-Route::get('/lista-usuarios-tutoria/{id}', [TutoriaAccionesController::class, 'listaEstudiantes']);

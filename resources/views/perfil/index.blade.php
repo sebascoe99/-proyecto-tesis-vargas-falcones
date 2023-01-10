@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="col-md-12 text-center perfil-usuario-nombre">
-                    <h2>JOSE ASENCIO</h2>
+                    <h2>{{ Auth::user()->name . ' ' . Auth::user()->last_name }}</h2>
                 </div>
             </div>
             <hr>
@@ -24,26 +24,26 @@
                 <div class="row justify-content-start">
                     <div class="col-md-6 label-perfil">
                         <span class=""><i class="fa-solid fa-user"></i></span>
-                        jasencio
+                        {{ Auth::user()->username }}
                     </div>
                     <div class="col-md-6 label-perfil">
                         <span class=""><i class="fa-solid fa-envelope"></i></span>
-                        jasencio@ug.edu.ec
+                        {{ Auth::user()->email }}
                     </div>
                 </div>
                 <div class="row justify-content-start">
                     <div class="col-md-6 label-perfil">
                         <span class=""><i class="fa-solid fa-address-card"></i></span>
-                        1205752489
+                        {{ Auth::user()->identification }}
                     </div>
                     <div class="col-md-6 label-perfil">
                         <span class=""><i class="fa-solid fa-shield-halved"></i></span>
-                        Administardor
+                        {{ Auth::user()->role->description }}
                     </div>
                 </div>
-                  
+
             </div>
-            
+
         </div>
     </div>
 </section>

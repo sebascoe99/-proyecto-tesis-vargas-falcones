@@ -21,7 +21,7 @@ class AdminController extends Controller
         $faculties = Facultad::all('id', 'name');
         //$careers = Carrera::all('id', 'faculty_id', 'name');//->where('faculty_id', $id);
 
-        return view('asignaturas.asignaturas_crear', compact('faculties'/*, 'careers'*/));
+        return view('asignaturas.create', compact('faculties'/*, 'careers'*/));
     }
 
     /**

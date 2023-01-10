@@ -11,7 +11,7 @@
      </div>
   </div>
   <div class="card-table col-sm-0.5 p-1">
-    <a class="btn btn-primary" type="button" href="/asignaturas_crear"><span><i class="fa-solid fa-plus"></i></span></a>
+    <a class="btn btn-primary" type="button" href="{{ route('asignaturas.create') }}"><span><i class="fa-solid fa-plus"></i></span></a>
   </div>
 </div>
 
@@ -28,7 +28,7 @@
       </thead>
       <tbody>
 
-        @foreach ($courses as $course)  
+        {{-- //@foreach ($courses as $course)
         <tr>
           <td data-label="Facultad">{{ $course->name_faculty }}</td>
           <td data-label="Carrera">{{ $course->name_career }}</td>
@@ -44,7 +44,7 @@
             </span>
           </td>
         </tr>
-        @endforeach
+        @endforeach --}}
       </tbody>
     </table>
   </div>

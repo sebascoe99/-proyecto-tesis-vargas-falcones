@@ -21,6 +21,7 @@ class User extends Authenticatable
     protected $table = 'users';
 
     protected $fillable = [
+        'rol_id',
         'username',
         'email',
         'password',
@@ -48,5 +49,9 @@ class User extends Authenticatable
 
     public function persona(){
         return $this->belongsTo(Persona::class);
+    }
+
+    public function role() {
+        return $this->belongsTo(Rol::class, 'rol_id');
     }
 }

@@ -7,7 +7,7 @@
         <div class="card col-sm-8 p-3">
             <div class="mb-3 d-flex justify-content-between">
                 <h4 class="titulo">CREAR ASIGNATURAS</h4>
-                <a href="/listar-asignaturas" style="font-size:30px; width:50px; color:#000"><i class="fa-solid fa-arrow-left"></i></a>
+                <a href="{{ route('asignaturas.index') }}" style="font-size:30px; width:50px; color:#000"><i class="fa-solid fa-arrow-left"></i></a>
             </div>
             <div class="mb-2">
                 {{-- <form action="{{ route('create_course') }}" method="POST" class="row g-3"> --}}
@@ -75,9 +75,9 @@
                             <span class="input-group-text"><i class="fa-solid fa-book"></i> </span>
                             <select class="form-select perfil-select" name="tutor" value="{{ old('tutor') }}" required>
                                 <option selected>Selecciona Dosente</option>
-                                @foreach ($Tutors as $tutor)
+                                {{-- @foreach ($Tutors as $tutor)
                                     <option value="{{ $tutor->id }}">{{ $tutor->name }}</option>
-                                @endforeach
+                                @endforeach --}}
                             </select>
                         </div>
                     </div>
@@ -104,13 +104,16 @@
     </div>
 </section>
 
+@endsection
+
+@push('scripts')
 <script>
     $("#name_faculty").change(function() {
 
         var idFacultad = $("#name_faculty option:selected").val();
 
         $.ajax({
-            url: 'search-careers',
+            url: "{{ route('asignaturas.search') }}",
             type: 'POST',
             dataType: 'json',
             data: { id: idFacultad, "_token": "{{ csrf_token() }}"},
@@ -120,7 +123,6 @@
                     $('#name_career').empty()
                     $('#name_career').prepend("<option value='0' selected>Selecciona carrera</option>");
                 }else{
-
                     data.forEach(function(carrera, index) {
                         $('#name_career').prepend("<option value='"+carrera['id']+"' >"+carrera['name']+"</option>");
                     });
@@ -130,5 +132,4 @@
     });
 
 </script>
-
-@endsection
+@endpush
