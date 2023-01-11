@@ -18,7 +18,7 @@
                         <div class="input-group">
                             <span class="input-group-text"><i class="fa-solid fa-building-columns"></i></span>
                             <select class="form-select perfil-select" id="name_faculty" name="name_faculty" value="{{ old('name_faculty') }}" required>
-                                <option value="0" selected>Selecciona facultad</option>
+                                <option value="0" selected>Seleccione facultad</option>
                                 @foreach ($faculties as $faculty)
                                     <option value="{{ $faculty->id }}">{{ $faculty->name }}</option>
                                 @endforeach
@@ -41,8 +41,8 @@
                         <label class="form-label" for="asignatura">Asignatura</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fa-solid fa-book"></i> </span>
-                            <select class="form-select perfil-select" name="name_course[]" multiple="" value="{{ old('name_course') }}" required>
-                                <option selected>Selecciona facultad</option>
+                            <select class="form-select perfil-select" id="name_course" name="name_course[]" multiple="" value="{{ old('name_course') }}" required>
+                                <option selected>Seleccione una asignatura</option>
                                 {{-- @foreach ($courses as $course)
                                     <option value="{{ $course->name }}">{{ $course->name }}</option>
                                 @endforeach --}}
@@ -53,7 +53,7 @@
                         <label class="form-label" for="asignatura">Semestre</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fa-solid fa-book"></i> </span>
-                            <select class="form-select perfil-select" name="semester" value="{{ old('semester') }}" required>
+                            <select class="form-select perfil-select" id="semestre" name="semestre" value="{{ old('semester') }}" required>
                                 <option selected>Selecciona semestre</option>
                                 <option value="Primero">1</option>
                                 <option value="Segundo">2</option>
@@ -70,14 +70,14 @@
                     </div>
 
                     <div class="col-lg-6">
-                        <label class="form-label" for="dosente">Dosente a asignar</label>
+                        <label class="form-label" for="dosente">Docente a asignar</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fa-solid fa-book"></i> </span>
-                            <select class="form-select perfil-select" name="tutor" value="{{ old('tutor') }}" required>
-                                <option selected>Selecciona Dosente</option>
-                                {{-- @foreach ($Tutors as $tutor)
-                                    <option value="{{ $tutor->id }}">{{ $tutor->name }}</option>
-                                @endforeach --}}
+                            <select class="form-select perfil-select" id="tutor" name="tutor" value="{{ old('tutor') }}" required>
+                                <option selected>Selecciona Docente</option>
+                                @foreach ($tutors as $tutor)
+                                    <option value="{{ $tutor->id }}">{{ $tutor->name }} {{ $tutor->last_name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -86,7 +86,7 @@
                         <label class="form-label" for="period">Periodo</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fa-solid fa-book"></i> </span>
-                            <select class="form-select perfil-select" name="period" value="{{ old('period') }}" required>
+                            <select class="form-select perfil-select" id="period" name="period" value="{{ old('period') }}" required>
                                 <option selected>Selecciona semestre</option>
                                 <option value="Primero">1</option>
                                 <option value="Segundo">2</option>
@@ -94,7 +94,7 @@
                         </div>
                     </div>
 
-                    <button type="button" class="btn btn-primary btn-lg">GUARDAR</button>
+                    <button id="guardar" type="button" class="btn btn-primary btn-lg">GUARDAR</button>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach
@@ -107,7 +107,9 @@
 @endsection
 
 @push('scripts')
+
 <script>
+
     $("#name_faculty").change(function() {
 
         var idFacultad = $("#name_faculty option:selected").val();
@@ -120,7 +122,7 @@
             success: function(data) {
 
                 if(!$.trim(data)){
-                    $('#name_career').empty()
+                    $('#name_career').empty();
                     $('#name_career').prepend("<option value='0' selected>Selecciona carrera</option>");
                 }else{
                     data.forEach(function(carrera, index) {
@@ -129,6 +131,58 @@
                 }
             }
         });
+    });
+
+
+    $("#name_career").change(function() {
+
+        var idCareer = $("#name_career option:selected").val();
+
+        $.ajax({
+            url: "{{ route('cursos.search') }}",
+            type: 'POST',
+            dataType: 'json',
+            data: { id: idCareer, "_token": "{{ csrf_token() }}"},
+            success: function(data) {
+
+                $('#name_course').empty();
+                if(!$.trim(data)){
+                    $('#name_course').prepend("<option value='0' selected>Seleccione una asignatura</option>");
+                }else{
+                    data.forEach(function(course, index) {
+                        $('#name_course').prepend("<option value='"+course['id']+"' >"+course['name']+"</option>");
+                    });
+                }
+            }
+        });
+    });
+
+    $("#guardar").click(function() {
+        //
+        //VALIDACIONES EDUARDO
+        //
+
+        var idFacultad = $("#name_faculty option:selected").val();
+        var idCareer = $("#name_career option:selected").val();
+        var idCourse = $("#name_course option:selected").val();
+        var semestre = $("#semestre option:selected").text();
+        var tutor = $("#tutor option:selected").val();
+        var periodo = $("#period option:selected").text();
+        var nameCourse = $("#name_course option:selected").text();
+
+
+        $.ajax({
+            url: "{{ route('asignaturas.store') }}",
+            type: 'POST',
+            dataType: 'json',
+            data: { idFacultad: idFacultad, idCareer: idCareer, idCourse: idCourse, semestre: semestre, tutor: tutor,
+                    periodo: periodo, nameCourse: nameCourse,"_token": "{{ csrf_token() }}"
+                  },
+            success: function(data) {
+                alert(data);
+            }
+        });
+
     });
 
 </script>

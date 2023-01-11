@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AsignaturaController;
+use App\Http\Controllers\Admin\CursoController;
 use App\Http\Controllers\Tutor\TutoriaAccionesController;
 use App\Http\Controllers\Tutor\TutoriaController;
 use Illuminate\Support\Facades\Auth;
@@ -46,9 +47,13 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::get('/asignaturas', [AsignaturaController::class, 'index'])->name('asignaturas.index');
 
+    Route::post('/asignar', [AsignaturaController::class, 'store'])->name('asignaturas.store');
+
     Route::get('/asignaturas/crear', [AsignaturaController::class, 'create'])->name('asignaturas.create');
 
     Route::post('/asignaturas/search-careers', [AsignaturaController::class, 'getCareersByFaculty'])->name('asignaturas.search');
+
+    Route::post('/cursos/search-course', [CursoController::class, 'getCoursesByCareer'])->name('cursos.search');
 
     // Route::get('/asignaturas/crear', function () {
     //     return view('asignaturas.create');
@@ -62,7 +67,7 @@ Route::group(['middleware' => ['auth']], function() {
     });
 
     Route::get('/crear-tutorias', function () {
-        return view('usuarios.tutorias_crear');
+        return view('tutorias.tutorias_crear');
     });
 
     //Route::get('/asignacion', [AdminController::class, 'index']);

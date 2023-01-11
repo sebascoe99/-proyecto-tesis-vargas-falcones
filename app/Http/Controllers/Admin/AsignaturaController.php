@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Asignatura;
 use App\Models\Carrera;
 use App\Models\Facultad;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class AsignaturaController extends Controller
 {
@@ -18,7 +20,14 @@ class AsignaturaController extends Controller
      */
     public function index()
     {
-        return view('asignaturas.index');
+        $asignaciones = DB::select("SELECT tu.id, f.name name_faculty, c.name name_career, co.name name_course
+                        FROM `tutorships` tu
+                        INNER JOIN users u ON u.id = tu.teacher_id
+                        INNER JOIN faculties f ON f.id = tu.faculty_id
+                        INNER JOIN careers c ON c.id = tu.career_id
+                        INNER JOIN courses co ON co.id = tu.course_id
+                    ");
+        return view('asignaturas.index', compact('asignaciones') );
     }
 
     /**
@@ -29,9 +38,11 @@ class AsignaturaController extends Controller
     public function create()
     {
         $faculties = Facultad::all('id', 'name');
+        $tutors = User::where('rol_id', '2')->get();
+
         //$careers = Carrera::all('id', 'faculty_id', 'name');//->where('faculty_id', $id);
 
-        return view('asignaturas.create', compact('faculties'/*, 'careers'*/));
+        return view('asignaturas.create', compact('faculties', 'tutors') );
     }
 
     /**
@@ -42,7 +53,14 @@ class AsignaturaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $asignacion = new Asignatura();
+        $asignacion->teacher_id = $request->tutor;
+        $asignacion->faculty_id = $request->idFacultad;
+        $asignacion->career_id = $request->idCareer;
+        $asignacion->course_id = $request->idCourse;
+        $asignacion->theme = $request->nameCourse;
+        $asignacion->save();
+        //return Redirect::to('asignaturas.index')->with('notice', 'Asignación ha sido creado correctamente.');
     }
 
     /**

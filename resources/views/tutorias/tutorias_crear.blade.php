@@ -10,16 +10,16 @@
                 <a href="{{ route('tutorias.index') }}" style="font-size:30px; width:50px; color:#000"><i class="fa-solid fa-arrow-left"></i></a>
             </div>
             <div class="mb-2">
-                <form action="{{ route('create_tutorship') }}" method="POST" class="row g-3">
+                <form action="#{{ route('create_tutorship') }}" method="POST" class="row g-3">
                 @csrf
                     <div class="col-md-12">
                         <div class="input-group">
                             <span class="input-group-text"><i class="fa-solid fa-building-columns"></i></span>
                             <select class="form-select perfil-select" id="facultad" name="faculty_id" value="{{ old('faculty_id') }}" required>
                                 <option selected>Asignatura</option>
-                                @foreach ($Asignaturas as $asignatura)
+                                {{-- @foreach ($Asignaturas as $asignatura)
                                     <option value="{{ $asignatura->id }}">{{ $asignatura->name }}</option>
-                                @endforeach
+                                @endforeach --}}
                             </select>
                         </div>
                     </div>
@@ -29,9 +29,9 @@
                             <span class="input-group-text"><i class="fa-solid fa-building-columns"></i></span>
                             <select class="form-select perfil-select" id="facultad" name="faculty_id" value="{{ old('faculty_id') }}" disabled>
                                 <option selected>Selecciona facultad</option>
-                                @foreach ($faculties as $faculty)
+                                {{-- @foreach ($faculties as $faculty)
                                     <option value="{{ $faculty->id }}">{{ $faculty->name }}</option>
-                                @endforeach
+                                @endforeach --}}
                             </select>
                         </div>
                     </div>
@@ -40,9 +40,9 @@
                         <div class="input-group">
                             <span class="input-group-text"><i class="fa-solid fa-book-open-reader"></i> </span>
                             <select class="form-select perfil-select" id="carrera" name="career_id" value="{{ old('career_id') }}" disabled>
-                                @foreach ($careers as $career)
+                                {{-- @foreach ($careers as $career)
                                     <option value="{{ $career->id }}">{{ $career->name }}</option>
-                                @endforeach
+                                @endforeach --}}
                             </select>
                         </div>
                     </div>
@@ -75,9 +75,9 @@
                             <span class="input-group-text"><i class="fa-solid fa-chalkboard-user"></i></span>
                             <select class="form-select perfil-select" name="teacher_id" value="{{ old('teacher') }}" required>
                                 <option selected>Selecciona tutor</option>
-                                @foreach ($tutors as $tutor)
+                                {{-- @foreach ($tutors as $tutor)
                                     <option value="{{ $tutor->id }}">{{ $tutor->name }} {{ $tutor->last_name }} {{ $tutor->second_last_name }}</option>
-                                @endforeach
+                                @endforeach --}}
                             </select>
                         </div>
                     </div>
@@ -152,6 +152,8 @@
         </div>
     </div>
 </section>
+@endsection
+@push('scripts')
 <script>
     function otherSelect() {
         var esOther = $("$reason").val();
@@ -162,4 +164,4 @@
         }
     }
 </script>
-@endsection
+@endpush
