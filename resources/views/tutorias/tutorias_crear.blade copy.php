@@ -13,18 +13,19 @@
             <div class="containerscu">
             <div class="titles">Crear Tutorias</div>
             <div class="form">
-            <form action="{{ route('create_tutorship') }}" method="POST">
+            {{-- <!-- <form action="{{ route('create_tutorship') }}" method="POST"> --> --}}
+            <form action="/crear_tutoria" method="POST">
                 @csrf
                 <div class="user-details">
                     <div class="input-fields">
-                        <select class="select-css" id="facultad" name="faculty_id" value="{{ old('faculty_id') }}" required>
+                        <select class="select-css" id="facultad" name="faculty_id" {{-- value="{{ old('faculty_id') }}" --}} required>
                             <option>Seleccione la facultad...</option>
-                            @foreach ($faculties as $faculty)
+                            {{-- @foreach ($faculties as $faculty)
                                 <option value="{{ $faculty->id }}">{{ $faculty->name }}</option>
-                            @endforeach
-                            {{-- <option value="value1">Facultad Ciencias matenaticas y fisicas</option>
+                            @endforeach --}}
+                            <option value="value1">Facultad Ciencias matenaticas y fisicas</option>
                             <option value="value2">Facultad de Ciencias Económicas.</option>
-                            <option value="value3">Facultad de Ciencias Médicas</option> --}}
+                            <option value="value3">Facultad de Ciencias Médicas</option>
                         </select>
                     </div>
                     <div class="input-box">

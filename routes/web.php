@@ -34,7 +34,7 @@ Route::group(['middleware' => ['auth']], function() {
         return view('dashboard.dashboard', compact('auth'));
     })->middleware(['auth'])->name('dashboard');
 
-    Route::get('/tutorias', [TutoriaController::class, 'index'])->name('tutorias.index');
+    //Route::get('/tutorias', [TutoriaController::class, 'index'])->name('tutorias.index');
     Route::get('/tutoria-tutor/{id}', [TutoriaController::class, 'show']);
     // Route::get('/tutoria-editar', [TutoriaController::class, 'index']);
     // Route::get('/tutoria-eliminar', [TutoriaController::class, 'index']);
@@ -43,6 +43,14 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/perfil', function () {
         return view('perfil.index');
     })->name('perfil.index');
+
+    Route::get('/tutorias', function () {
+        return view('tutorias.index');
+    })->name('tutorias.index');
+
+    Route::get('/crear-tutorias', function () {
+        return view('tutorias.tutorias_crear');
+    })->name('tutorias.tutorias_crear');
 
     Route::get('/asignaturas', [AsignaturaController::class, 'index'])->name('asignaturas.index');
 
@@ -61,9 +69,6 @@ Route::group(['middleware' => ['auth']], function() {
         return view('usuarios.crear_usuarios');
     });
 
-    Route::get('/crear-tutorias', function () {
-        return view('usuarios.tutorias_crear');
-    });
 
     //Route::get('/asignacion', [AdminController::class, 'index']);
     Route::get('/docentes', [AdminController::class, 'getTutors']);

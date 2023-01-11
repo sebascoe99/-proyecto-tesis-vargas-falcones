@@ -7,19 +7,22 @@
         <div class="card col-sm-10 p-3">
             <div class="mb-3 d-flex justify-content-between">
                 <h4 class="titulo">CREAR TUTORIAS</h4>
-                <a href="{{ route('tutorias.index') }}" style="font-size:30px; width:50px; color:#000"><i class="fa-solid fa-arrow-left"></i></a>
+                <a href="/listar-tutorias" style="font-size:30px; width:50px; color:#000"><i class="fa-solid fa-arrow-left"></i></a>
             </div>
-            <div class="mb-2">
-                <form action="{{ route('create_tutorship') }}" method="POST" class="row g-3">
+            {{-- <form action="{{ route('create_tutorship') }}" method="POST" class="row g-3"> --}
+            <form action="/crear-tutoria" method="POST" class="row g-3">
                 @csrf
                     <div class="col-md-12">
                         <div class="input-group">
                             <span class="input-group-text"><i class="fa-solid fa-building-columns"></i></span>
-                            <select class="form-select perfil-select" id="facultad" name="faculty_id" value="{{ old('faculty_id') }}" required>
+                            <select class="form-select perfil-select" id="asignatura" name="faculty_id" value="{{ old('faculty_id') }}" required>
                                 <option selected>Asignatura</option>
-                                @foreach ($Asignaturas as $asignatura)
+                                {{-- @foreach ($Asignaturas as $asignatura)
                                     <option value="{{ $asignatura->id }}">{{ $asignatura->name }}</option>
-                                @endforeach
+                                @endforeach --}
+                                <option value="1">asignatura 1</option>
+                                <option value="2">asignatura 2</option>
+                                <option value="3">asignatura 3</option>
                             </select>
                         </div>
                     </div>
@@ -29,9 +32,12 @@
                             <span class="input-group-text"><i class="fa-solid fa-building-columns"></i></span>
                             <select class="form-select perfil-select" id="facultad" name="faculty_id" value="{{ old('faculty_id') }}" disabled>
                                 <option selected>Selecciona facultad</option>
-                                @foreach ($faculties as $faculty)
+                                {{-- @foreach ($faculties as $faculty)
                                     <option value="{{ $faculty->id }}">{{ $faculty->name }}</option>
-                                @endforeach
+                                @endforeach --}
+                                <option value="1">faculty 1</option>
+                                <option value="2">faculty 2</option>
+                                <option value="3">faculty 3</option>
                             </select>
                         </div>
                     </div>
@@ -40,9 +46,12 @@
                         <div class="input-group">
                             <span class="input-group-text"><i class="fa-solid fa-book-open-reader"></i> </span>
                             <select class="form-select perfil-select" id="carrera" name="career_id" value="{{ old('career_id') }}" disabled>
-                                @foreach ($careers as $career)
+                            {{-- @foreach ($careers as $career)
                                     <option value="{{ $career->id }}">{{ $career->name }}</option>
-                                @endforeach
+                                @endforeach --}
+                                <option value="1">career 1</option>
+                                <option value="2">career 2</option>
+                                <option value="3">career 3</option>
                             </select>
                         </div>
                     </div>
@@ -75,9 +84,11 @@
                             <span class="input-group-text"><i class="fa-solid fa-chalkboard-user"></i></span>
                             <select class="form-select perfil-select" name="teacher_id" value="{{ old('teacher') }}" required>
                                 <option selected>Selecciona tutor</option>
-                                @foreach ($tutors as $tutor)
+                                {{-- @foreach ($tutors as $tutor)
                                     <option value="{{ $tutor->id }}">{{ $tutor->name }} {{ $tutor->last_name }} {{ $tutor->second_last_name }}</option>
-                                @endforeach
+                                @endforeach --}}
+                                <option value="1">Tutor 1</option>
+                                <option value="2">Tutor 2</option>
                             </select>
                         </div>
                     </div>
@@ -87,7 +98,7 @@
                             <span class="input-group-text"><i class="fa-solid fa-users"></i></span>
                             <input type="text" class="form-control" placeholder="Tema" name="theme" required>
                         </div>
-
+                        
                     </div>
                     <div class="col-lg-12">
                         <label class="form-label" for="place">Lugar</label>
@@ -123,7 +134,7 @@
                             <span class="input-group-text"><i class="fa-solid fa-users"></i></span>
                             <input type="number" class="form-control" placeholder="Maximo de estudiantes" name="max_students" value="{{ old('numberStudent') }}" required>
                         </div>
-
+                        
                     </div>
                     <div class="col-lg-6">
                         <label class="form-label" for="reason">Motivo</label>
@@ -145,10 +156,9 @@
                             <input type="text" class="form-control" placeholder="Especifique motivo" name="other" required>
                         </div>
                     </div>
-
-                    <button type="button" class="btn btn-primary btn-lg">GUARDAR</button>
+                    
+                    <button type="button" class="btn btn-primary btn-md">GUARDAR</button>
                 </form>
-            </div>
         </div>
     </div>
 </section>
