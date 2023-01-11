@@ -28,12 +28,12 @@
       </thead>
       <tbody>
 
-        {{-- //@foreach ($courses as $course)
+        @foreach ($asignaciones as $asignacion)
         <tr>
-          <td data-label="Facultad">{{ $course->name_faculty }}</td>
-          <td data-label="Carrera">{{ $course->name_career }}</td>
-          <td data-label="Asignatura">{{ $course->name_course }}</td>
-          <td data-label="Semestre">{{ $course->semester }}</td>
+          <td data-label="Facultad">{{ $asignacion->name_faculty }}</td>
+          <td data-label="Carrera">{{ $asignacion->name_career }}</td>
+          <td data-label="Asignatura">{{ $asignacion->name_course }}</td>
+          <td data-label="Semestre">8</td>
 
           <td class="acciones">
             <span>
@@ -44,7 +44,7 @@
             </span>
           </td>
         </tr>
-        @endforeach --}}
+        @endforeach
       </tbody>
     </table>
   </div>
