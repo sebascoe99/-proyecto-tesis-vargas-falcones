@@ -22,7 +22,8 @@
           <th>Facultad</th>
           <th>Carrera</th>
           <th>Asignatura</th>
-          <th>Semestre</th>
+          <th>Tutor</th>
+          <th>Ciclo</th>
           <th>Acciones</th>
         </tr>
       </thead>
@@ -33,14 +34,15 @@
           <td data-label="Facultad">{{ $asignacion->name_faculty }}</td>
           <td data-label="Carrera">{{ $asignacion->name_career }}</td>
           <td data-label="Asignatura">{{ $asignacion->name_course }}</td>
-          <td data-label="Semestre">8</td>
+          <td data-label="Tutor">{{ $asignacion->name_tutor }} {{ $asignacion->last_name_tutor }}</td>
+          <td data-label="Ciclo">{{ $asignacion->cicle_name }}</td>
 
           <td class="acciones">
             <span>
-              <i class="fa-solid fa-pen-to-square edit"></i>
+              <a href="{{ route('asignaturas.edit', $asignacion->id) }}" class="fa-solid fa-pen-to-square edit"></a>
             </span>
             <span class="borrar">
-              <i class="fa-solid fa-trash-can delete"></i>
+              <a href="{{ route('asignaturas.destroy', $asignacion->id) }}" class="fa-solid fa-trash-can delete"></a>
             </span>
           </td>
         </tr>

@@ -5,9 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Asignacion extends Model
+class Cicle extends Model
 {
     use HasFactory;
-    protected $guarded = [];
-    protected $table = 'course_tutor';
+    protected $table = 'cicle';
 }

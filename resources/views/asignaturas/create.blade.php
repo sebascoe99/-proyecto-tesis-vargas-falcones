@@ -3,6 +3,25 @@
 @section('content')
 
 <section class="content">
+    @if(session('msg'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{-- <div class="alert alert-warning alert-dismissible fade show" role="alert"> --}}
+        <strong>Excelente</strong> {{ session("msg") }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+    @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <h5><i class="icon fas fa-exclamation-triangle"></i> Error</h5>
+            <ul>
+                @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <div class="d-flex justify-content-center mt-4">
         <div class="card col-sm-8 p-3">
             <div class="mb-3 d-flex justify-content-between">
@@ -11,7 +30,9 @@
             </div>
             <div class="mb-2">
                 {{-- <form action="{{ route('create_course') }}" method="POST" class="row g-3"> --}}
-                <form action="" method="POST" class="row g-3">
+
+
+                <form action=" {{route('asignaturas.store')}} " method="POST" class="row g-3">
                 @csrf
                     <div class="col-md-6">
                         <label class="form-label" for="perfil">Facultad</label>
@@ -41,7 +62,7 @@
                         <label class="form-label" for="asignatura">Asignatura</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fa-solid fa-book"></i> </span>
-                            <select class="form-select perfil-select" id="name_course" name="name_course[]" multiple="" value="{{ old('name_course') }}" required>
+                            <select class="form-select perfil-select" id="name_course" name="name_course" multiple=""  required>
                                 <option selected>Seleccione una asignatura</option>
                                 {{-- @foreach ($courses as $course)
                                     <option value="{{ $course->name }}">{{ $course->name }}</option>
@@ -86,18 +107,15 @@
                         <label class="form-label" for="period">Periodo</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fa-solid fa-book"></i> </span>
-                            <select class="form-select perfil-select" id="period" name="period" value="{{ old('period') }}" required>
-                                <option selected>Selecciona semestre</option>
-                                <option value="Primero">1</option>
-                                <option value="Segundo">2</option>
+                            <select class="form-select perfil-select" id="period" name="period">
+                                @foreach ($cicles as $cicle)
+                                    <option value="{{ $cicle->id }}">{{ $cicle->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
 
-                    <button id="guardar" type="button" class="btn btn-primary btn-lg">GUARDAR</button>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
+                    <button id="guardar" type="submit" class="btn btn-primary btn-lg">GUARDAR</button>
                 </form>
             </div>
         </div>
@@ -157,33 +175,33 @@
         });
     });
 
-    $("#guardar").click(function() {
-        //
-        //VALIDACIONES EDUARDO
-        //
+    // $("#guardar").click(function() {
+    //     //
+    //     //VALIDACIONES EDUARDO
+    //     //
 
-        var idFacultad = $("#name_faculty option:selected").val();
-        var idCareer = $("#name_career option:selected").val();
-        var idCourse = $("#name_course option:selected").val();
-        var semestre = $("#semestre option:selected").text();
-        var tutor = $("#tutor option:selected").val();
-        var periodo = $("#period option:selected").text();
-        var nameCourse = $("#name_course option:selected").text();
+    //     var idFacultad = $("#name_faculty option:selected").val();
+    //     var idCareer = $("#name_career option:selected").val();
+    //     var idCourse = $("#name_course option:selected").val();
+    //     var semestre = $("#semestre option:selected").text();
+    //     var tutor = $("#tutor option:selected").val();
+    //     var periodo = $("#period option:selected").val();
+    //     var nameCourse = $("#name_course option:selected").text();
 
 
-        $.ajax({
-            url: "{{ route('asignaturas.store') }}",
-            type: 'POST',
-            dataType: 'json',
-            data: { idFacultad: idFacultad, idCareer: idCareer, idCourse: idCourse, semestre: semestre, tutor: tutor,
-                    periodo: periodo, nameCourse: nameCourse,"_token": "{{ csrf_token() }}"
-                  },
-            success: function(data) {
-                alert(data);
-            }
-        });
+    //     $.ajax({
+    //         url: "{{ route('asignaturas.store') }}",
+    //         type: 'POST',
+    //         dataType: 'json',
+    //         data: { idFacultad: idFacultad, idCareer: idCareer, idCourse: idCourse, semestre: semestre, tutor: tutor,
+    //                 periodo: periodo, nameCourse: nameCourse,"_token": "{{ csrf_token() }}"
+    //               },
+    //         success: function(data) {
+    //             alert(data);
+    //         }
+    //     });
 
-    });
+    // });
 
 </script>
 @endpush

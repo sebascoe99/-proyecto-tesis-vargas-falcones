@@ -5,14 +5,8 @@
 
 <section class="content">
 <div class="d-flex justify-content-end mt-4">
-  <div class="card-table col-sm-6 p-1">
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="Buscar....">
-      <button class="btn btn-primary" type="button"><span><i class="fa-solid fa-magnifying-glass"></i></span></button>
-     </div>
-  </div>
   <div class="card-table col-sm-0.5 p-1">
-    <a class="btn btn-primary" type="button" href="/crear-tutorias"><span><i class="fa-solid fa-plus"></i></span></a>
+    <a class="btn btn-primary" type="button" href="/crear-tutorias"><span><i class="fa-solid fa-plus"> Agregar Tutoria</i></span></a>
   </div>
 </div>
 
@@ -32,12 +26,12 @@
       <div class="col-md-4">
           <div class="input-group">
               <span class="input-group-text"><i class="fa-solid fa-building-columns"></i></span>
-              <select class="form-select perfil-select" id="asignatura" name="asignatura_id" disabled>
+              <select class="form-select perfil-select" id="asignatura" name="asignatura_id">
                   <option selected>Selecciona Asignatura</option>
                   <option value="asignatura1">Asignatura 1</option>
                   <option value="asignatura2">Asignatura 2</option>
                   <option value="asignatura3">Asignatura 3</option>
-                  {{-- @foreach ($faculties as $faculty) 
+                  {{-- @foreach ($faculties as $faculty)
                       <option value="{{ $faculty->id }}">{{ $faculty->name }}</option>
                    @endforeach --}}
               </select>
@@ -60,9 +54,17 @@
               </select>
           </div>
       </div>
+      <div class="col-lg-6">
 
-      <button type="button" class="btn btn-primary btn-lg">GUARDAR</button>
+      </div>
+      <div class="col-lg-4">
+        <button type="button" class="btn btn-primary btn-md">Buscar</button>
+      </div>
+
   </form>
+
+  <br>
+  <br>
 <div class="table-responsive-lg tables">
     <table class="table table-lg ">
       <thead>
@@ -80,7 +82,7 @@
         </tr>
       </thead>
       <tbody>
-        {{-- @foreach ($tutorias as $tutoria) 
+        {{-- @foreach ($tutorias as $tutoria)
          <tr>
             <td data-label="Carrera">{{ $tutoria->carrera }}</td>
             <td data-label="Asignatura">{{ $tutoria->asignatura }}</td>

@@ -55,9 +55,12 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::get('/asignaturas', [AsignaturaController::class, 'index'])->name('asignaturas.index');
 
-    Route::post('/asignar', [AsignaturaController::class, 'store'])->name('asignaturas.store');
-
     Route::get('/asignaturas/crear', [AsignaturaController::class, 'create'])->name('asignaturas.create');
+    Route::post('/asignaturas/crear', [AsignaturaController::class, 'store'])->name('asignaturas.store');
+
+    Route::get('/asignaturas/editar/{id}', [AsignaturaController::class, 'edit'])->name('asignaturas.edit');
+    Route::get('/asignaturas/eliminar/{id}', [AsignaturaController::class, 'destroy'])->name('asignaturas.destroy');
+    
 
     Route::post('/asignaturas/search-careers', [AsignaturaController::class, 'getCareersByFaculty'])->name('asignaturas.search');
 
